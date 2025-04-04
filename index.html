@@ -2,14 +2,38 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>SZ Catalog QR Scan</title>
-    <meta http-equiv="refresh" content="0; URL=szwholesale.net">
+    <title>Smart Redirect</title>
+    <!-- Prevent caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript">
-        window.location.href = "szwholesale.net";
-    </script>
 </head>
 <body>
-    <!-- Empty body - no visible content needed -->
+    <div id="loading">Redirecting...</div>
+    
+    <script>
+        // Add timestamp to prevent caching
+        function fetchConfig() {
+            const timestamp = new Date().getTime();
+            fetch('config.json?t=' + timestamp)
+                .then(response => response.json())
+                .then(data => {
+                    // Get the current destination URL from config
+                    if (data && data.currentUrl) {
+                        window.location.href = data.currentUrl;
+                    } else {
+                        document.getElementById('loading').innerHTML = 'Error: Configuration not found.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching config:', error);
+                    document.getElementById('loading').innerHTML = 'Error: Could not load configuration.';
+                });
+        }
+        
+        // Run immediately
+        fetchConfig();
+    </script>
 </body>
 </html>
