@@ -2,11 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Redirecting...</title>
+    <title>SZ Catalog QR Scan</title>
     <meta http-equiv="refresh" content="0; URL=https://example.com/your-destination-url">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        window.location.href = "https://example.com/your-destination-url";
+    </script>
 </head>
 <body>
-    <p>Redirecting you to the destination... If you are not redirected automatically, <a href="https://example.com/your-destination-url">click here</a>.</p>
+    <!-- Empty body - no visible content needed -->
 </body>
 </html>
